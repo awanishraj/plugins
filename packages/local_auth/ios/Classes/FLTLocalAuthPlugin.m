@@ -71,7 +71,7 @@
   LAContext *context = [[LAContext alloc] init];
   NSError *authError = nil;
   NSMutableArray<NSString *> *biometrics = [[NSMutableArray<NSString *> alloc] init];
-  if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+  if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication
                            error:&authError]) {
     if (authError == nil) {
       if (@available(iOS 11.0.1, *)) {
@@ -98,9 +98,9 @@
   self.lastResult = nil;
   context.localizedFallbackTitle = @"";
 
-  if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+  if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication
                            error:&authError]) {
-    [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+    [context evaluatePolicy:LAPolicyDeviceOwnerAuthentication
             localizedReason:arguments[@"localizedReason"]
                       reply:^(BOOL success, NSError *error) {
                         if (success) {
